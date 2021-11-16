@@ -1,0 +1,130 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "multi-config",
+      "hidden": true,
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release"
+      }
+    },
+    {
+      "name": "msvc-cl16",
+      "inherits": "multi-config",
+      "displayName": "Ninja Visual C++ 16",
+      "description": "Recommended configuration for windows builds",
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS": "/EHsc /permissive- /Zc:__cplusplus /Zc:externConstexpr /Zc:inline /Zc:preprocessor /Zc:throwingNew /diagnostics:caret /experimental:external /external:anglebrackets /external:W0 /D_ENABLE_EXTENDED_ALIGNED_STORAGE"
+      }
+    },
+    {
+      "name": "gcc",
+      "inherits": "multi-config",
+      "displayName": "G++",
+      "description": "Recommended configuration for GNU GCC",
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS": "-fsized-deallocation -Wall -Wextra -Werror --pedantic -ftemplate-backtrace-limit=0"
+      }
+    },
+    {
+      "name": "msbuild-vs16-x64",
+      "displayName": "MSBuild cl16 x64",
+      "description": "Fallback solution for Visual Studio 16 2019 (x64)",
+      "generator": "Visual Studio 16 2019",
+      "toolset": "host=x64",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS": "/EHsc /permissive- /Zc:__cplusplus /Zc:externConstexpr /Zc:inline /Zc:preprocessor /Zc:throwingNew /diagnostics:caret /experimental:external /external:anglebrackets /external:W0 /D_ENABLE_EXTENDED_ALIGNED_STORAGE"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "msvc-cl16-debug",
+      "displayName": "Debug",
+      "configurePreset": "msvc-cl16",
+      "configuration": "Debug"
+    },
+    {
+      "name": "msvc-cl16-release",
+      "displayName": "Release",
+      "configurePreset": "msvc-cl16",
+      "configuration": "Release"
+    },
+    {
+      "name": "gcc-debug",
+      "displayName": "Debug",
+      "configurePreset": "gcc",
+      "configuration": "Debug"
+    },
+    {
+      "name": "gcc-release",
+      "displayName": "Release",
+      "configurePreset": "gcc",
+      "configuration": "Release"
+    },
+    {
+      "name": "msbuild-vs16-x64-debug",
+      "displayName": "Debug",
+      "configurePreset": "msbuild-vs16-x64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "msbuild-vs16-x64-release",
+      "displayName": "Release",
+      "configurePreset": "msbuild-vs16-x64",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test-base",
+      "hidden": true,
+      "output": {
+        "outputOnFailure": true,
+        "debug": false
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
+    },
+    {
+      "name": "test-msvc-cl16-debug",
+      "inherits": "test-base",
+      "displayName": "Test Debug",
+      "configurePreset": "msvc-cl16",
+      "configuration": "Debug"
+    },
+    {
+      "name": "test-msvc-cl16-release",
+      "inherits": "test-base",
+      "displayName": "Test Release",
+      "configurePreset": "msvc-cl16",
+      "configuration": "Release"
+    },
+    {
+      "name": "test-gcc-debug",
+      "inherits": "test-base",
+      "displayName": "Test Debug",
+      "configurePreset": "gcc",
+      "configuration": "Debug"
+    },
+    {
+      "name": "test-gcc-release",
+      "inherits": "test-base",
+      "displayName": "Test Release",
+      "configurePreset": "gcc",
+      "configuration": "Release"
+    }
+  ]
+}
