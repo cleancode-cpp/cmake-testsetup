@@ -21,8 +21,11 @@ git submodules --update
 
 ### Windows Visual Studio 2019 / 2022
 
-* Please update to the latest version (16.11.7)
+* Please update to the latest version (VS2019 - 16.11.7)
 * Make sure "Desktop development with C++" is selected in the installer
+* Add optional components
+  * Test Adapter for Google Test (optional)
+  * C++ CMake tools for Windows (required)
 
 First build:
 * Open the folder in Visual Studio
@@ -34,6 +37,24 @@ Notes:
 * The Visual Studio Test Explorer only works in Visual Studio 2022
 * You can only run debug builds from Visual Studio
 * The "msbuild-vs16-x64" preset also works but compiles slower.
+
+### Windows Visual Studio 2017
+
+* Please update to the latest version (VS2017 - 15.9.41)
+* Make sure "Desktop development with C++" is selected in the installer
+* Add Optional Parts:
+  * Test Adapter for Google Test (optional)
+  * Visual C++ tools for CMake (required)
+
+First build:
+* Open the folder in Visual Studio
+* Use CMake menu to generate the cmake cache (might be automatic depending on your options)
+* Build and run individual executables
+
+Notes:
+* "Test Explorer" should work after the first build if test adapter is installed
+* VS2017 will not use the "CMakePresets.json"
+* CMake build files are located in "%userprofile%\CMakeBuilds" (default)
 
 ### Windows VSCode
 
