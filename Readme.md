@@ -13,8 +13,7 @@ git clone --recurse-submodules https://github.com/cleancode-cpp/cmake-testsetup.
 If you forgot to use the submodules option on clone you can do
 
 ```
-git submodules --init
-git submodules --update
+git submodule update --init
 ```
 
 ## Validated build and test environments
@@ -44,7 +43,7 @@ Notes:
 
 First build:
 * Open the folder in VSCode
-* Select Configuraton "msbuild-vs16-x64"
+* Select Configuration "msbuild-vs16-x64"
 * Build
 
 Notes:
@@ -78,5 +77,5 @@ First build:
 ## Contributions are welcome
 
 If you like the project feel free to leave a star.
-If you have issues with your setup, try to find a colleage to help you out.
+If you have issues with your setup, try to find a colleague to help you out.
 If something is wrong with this project or you think I might be able to help, feel free to open an issue.
